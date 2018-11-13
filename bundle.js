@@ -70,33 +70,14 @@ var Random = require('random-js');
 module.exports = {
   list: [
     //Ask
-    'Ask a question... tap for the answer',
+    'Ask a module or assessment question... tap for the answer',
 
-    // Yes
-    'It is certain',
-    'It is decidedly so',
-    'Without a doubt',
-    'Yes definitely',
-    'You may rely on it',
-    'As I see it, yes',
-    'Most likely',
-    'Outlook good',
-    'Yes',
-    'Signs point to yes',
-
-    // Maybe
-    'Reply hazy try again',
-    'Ask again later',
-    'Better not tell you now',
-    'Cannot predict now',
-    'Concentrate and ask again',
-
-    // No
-    'Don\'t count on it',
-    'My reply is no',
-    'My sources say no',
-    'Outlook not so good',
-    'Very doubtful'
+    'Ask your module coordinator',
+    'Your module coordinator knows the answer',
+    'Have you asked your module coordinator',
+    'I sense that your module coordinator knows',
+    'Go ask your module coordinator',
+    'Maybe ask your module coordinator'
   ],
 
   create: function(index) {
@@ -110,9 +91,7 @@ module.exports = {
 
   getType: function () {
     if (this.index === 0) return 'ask'
-    if (this.index <= 10) return 'yes';
-    if (this.index <= 15) return 'maybe';
-    return 'no';
+    return 'maybe';
   },
 
   random: function(max) {
@@ -322,6 +301,7 @@ process.chdir = function (dir) {
       function mt19937() {
         var data = new Int32Array(624);
         var index = 0;
+        var uses = 0;
 
         function next() {
           if ((index | 0) >= 624) {
@@ -331,9 +311,18 @@ process.chdir = function (dir) {
 
           var value = data[index];
           index = (index + 1) | 0;
+          uses += 1;
           return temper(value) | 0;
         }
+        next.getUseCount = function() {
+          return uses;
+        };
         next.discard = function (count) {
+          uses += count;
+          if ((index | 0) >= 624) {
+            refreshData(data);
+            index = 0;
+          }
           while ((count - index) > 624) {
             count -= 624 - index;
             refreshData(data);
@@ -350,6 +339,7 @@ process.chdir = function (dir) {
             data[i] = previous = (imul((previous ^ (previous >>> 30)), 0x6c078965) + i) | 0;
           }
           index = 624;
+          uses = 0;
           return next;
         };
         next.seedWithArray = function (source) {
@@ -385,11 +375,11 @@ process.chdir = function (dir) {
 
   Random.generateEntropyArray = function () {
     var array = [];
-    array.push(new Date().getTime() | 0);
     var engine = Random.engines.nativeMath;
     for (var i = 0; i < 16; ++i) {
       array[i] = engine() | 0;
     }
+    array.push(new Date().getTime() | 0);
     return array;
   };
 
@@ -779,7 +769,7 @@ process.chdir = function (dir) {
       return Random.shuffle(engine, clone, 0);
     }
     var tailLength = length - sampleSize;
-    return Random.shuffle(engine, clone, tailLength).slice(tailLength);
+    return Random.shuffle(engine, clone, tailLength - 1).slice(tailLength);
   };
   proto.sample = function (population, sampleSize) {
     return Random.sample(this.engine, population, sampleSize);

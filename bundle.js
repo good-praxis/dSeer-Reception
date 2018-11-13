@@ -70,7 +70,7 @@ var Random = require('random-js');
 module.exports = {
   list: [
     //Ask
-    'Ask a module or assessment question... tap for the answer',
+    'Ask a module question... tap for the answer',
 
     'Ask your module coordinator',
     'Your module coordinator knows the answer',

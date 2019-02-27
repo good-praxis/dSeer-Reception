@@ -3,14 +3,14 @@ var Random = require('random-js');
 module.exports = {
   list: [
     //Ask
-    'Ask a module question... tap for the answer',
+    'Found something broking in FGP? Find out how to solve this issue',
 
-    'Ask your module coordinator',
-    'Your module coordinator knows the answer',
-    'Have you asked your module coordinator',
-    'I sense that your module coordinator knows',
-    'Go ask your module coordinator',
-    'Maybe ask your module coordinator'
+    'Ask the reception',
+    'The reception knows the answer',
+    'Have you asked the reception?',
+    'I sense that the reception knows',
+    'Go ask the reception',
+    'Maybe ask the reception'
   ],
 
   create: function(index) {

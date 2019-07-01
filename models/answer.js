@@ -3,14 +3,17 @@ var Random = require('random-js');
 module.exports = {
   list: [
     //Ask
-    'Found something broking in FGP? Find out how to solve this issue',
+    'Ask a question about the synthesis semester...',
 
-    'Ask the reception',
-    'The reception knows the answer',
-    'Have you asked the reception?',
-    'I sense that the reception knows',
-    'Go ask the reception',
-    'Maybe ask the reception'
+    'Ask again in a week',
+    "I'll answer that in a week",
+    'Please look at the wiki',
+    'Ask your assessor',
+    'You should ask your assessor',
+    "That's for your assessor to decide",
+    'Ask your assessor',
+    'You should ask your assessor',
+    "That's for your assessor to decide"
   ],
 
   create: function(index) {

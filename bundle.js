@@ -70,14 +70,17 @@ var Random = require('random-js');
 module.exports = {
   list: [
     //Ask
-    'Ask a module question... tap for the answer',
+    'Ask a question about the synthesis semester...',
 
-    'Ask your module coordinator',
-    'Your module coordinator knows the answer',
-    'Have you asked your module coordinator',
-    'I sense that your module coordinator knows',
-    'Go ask your module coordinator',
-    'Maybe ask your module coordinator'
+    'Ask again in a week',
+    "I'll answer that in a week",
+    'Please look at the wiki',
+    'Ask your assessor',
+    'You should ask your assessor',
+    "That's for your assessor to decide",
+    'Ask your assessor',
+    'You should ask your assessor',
+    "That's for your assessor to decide"
   ],
 
   create: function(index) {
